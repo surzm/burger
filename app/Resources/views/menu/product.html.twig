@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ include('header/index.html.twig') }}
+
+    <h1>{{ product.name }}</h1>
+    <p>Цена : {{ product.price }}</p>
+    <p>{{ product.description }}</p>
+
+    <p><a href="/add{{ product.id }}">Добавить в корзину</a> </p>
+    <p><a href="order"> оформить заказ</a> </p>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ include('header/index.html.twig') }}
+<div>
+    <p>{{ form_start(form) }}</p>
+    <p>{{ form_widget(form) }}</p>
+    <p>{{ form_end(form) }}</p>
+</div>
+{% endblock %}

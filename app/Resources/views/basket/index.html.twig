@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ include ('header/index.html.twig') }}
+    <div>
+        {% for product in products %}
+            <p> {{ product.0.name }}</p>
+            <p> {{ product.0.price }}</p>
+            <p> {{ product.count }} шт.</p>
+            <p><a href="/delete{{ product.0.id }}">Удалить</a></p>
+
+        {% else %}
+            <p>No products found</p>
+        {% endfor %}
+    </div>
+    <div>
+        <p>Общая стоимость:{{ total }}</p>
+
+        <p><a href="/order">Оформить заказ</a></p>
+    </div>
+
+{% endblock %}

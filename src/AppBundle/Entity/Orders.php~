@@ -1,0 +1,68 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Orders
+ *
+ * @ORM\Table(name="orders")
+ * @ORM\Entity
+ */
+class Orders
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_name", type="string", length=255, nullable=false)
+     */
+    private $userName;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="phone_number", type="integer", nullable=false)
+     */
+    private $phoneNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=255, nullable=false)
+     */
+    private $address;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datetime", type="datetime", nullable=false)
+     */
+    private $datetime;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="status", type="integer", nullable=true)
+     */
+    private $status = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="total_cost", type="integer", nullable=true)
+     */
+    private $totalCost;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

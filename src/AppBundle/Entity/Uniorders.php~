@@ -1,0 +1,47 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Uniorders
+ *
+ * @ORM\Table(name="uniorders", indexes={@ORM\Index(name="Id_product", columns={"id_product"}), @ORM\Index(name="id_order", columns={"id_order"})})
+ * @ORM\Entity
+ */
+class Uniorders
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_product", type="integer", nullable=false)
+     */
+    private $idProduct;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_order", type="integer", nullable=false)
+     */
+    private $idOrder;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="count", type="integer", nullable=false)
+     */
+    private $count;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+
