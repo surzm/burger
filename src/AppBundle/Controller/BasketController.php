@@ -40,7 +40,6 @@ class BasketController extends Controller
         };
         $sum=total($products);
         $session->set('total',$sum);
-        $session->set('products',$products);
 
             return $this->render('basket/index.html.twig', array(
                 'products' => $products,

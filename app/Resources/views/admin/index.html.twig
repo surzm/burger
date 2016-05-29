@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1> Заказы </h1>
+
+    {#{{ dump }}#}
+    <table style="width: 70%">
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.userName }}</td>
+                <td>{{ order.phoneNumber }}</td>
+                <td>{{ order.address }}</td>
+                <td>{{ order.datetime.date|date("m/d/y h:i:s") }}</td>
+                <td>{{ order.totalCost }}</td>
+                {% if order.status == 0 %}
+                    <td> Формируется</td>
+                {% elseif order.status == 1 %}
+                    <td> Отправлен</td>
+                {% endif %}
+                <td><a href="admin/{{ order.id }}"> Подробнее </a> </td>
+            </tr>
+        {% endfor %}
+    </table>
+<br>
+    <a href="/">Выйти</a>
+
+{% endblock %}
