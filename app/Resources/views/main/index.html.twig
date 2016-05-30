@@ -2,8 +2,16 @@
 
 {% block body %}
 <h1>Burgers</h1>
+
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
     <div>
-        <a href="/menu">menu</a>
+        <h2><a href="/menu">Меню</a></h2>
     </div>
 
 {% endblock %}

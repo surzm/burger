@@ -3,7 +3,6 @@
 {% block body %}
     <h1> Заказы </h1>
 
-    {#{{ dump }}#}
     <table style="width: 70%">
         {% for order in orders %}
             <tr>
@@ -19,6 +18,8 @@
                 {% endif %}
                 <td><a href="admin/{{ order.id }}"> Подробнее </a> </td>
             </tr>
+        {% else %}
+            <p>Заказов нет</p>
         {% endfor %}
     </table>
 <br>

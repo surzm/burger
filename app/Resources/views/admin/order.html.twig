@@ -1,9 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
+    <a href="/admin">К заказам</a>
+    <br>
     {% for order in orders %}
         <p>{{ order.name }} - {{ order.count }} шт. </p>
 {% endfor %}
-    <a href="/admin">К заказам</a>
+    <a href="/admin/send/{{ orders.0.idOrder}}">Отправить</a>
+
 
 {% endblock %}

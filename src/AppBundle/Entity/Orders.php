@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -33,7 +34,6 @@ class Orders
 
     /**
      * @var integer
-     *
      * @ORM\Column(name="phone_number", type="integer", nullable=false)
      */
     private $phoneNumber;

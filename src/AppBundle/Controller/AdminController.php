@@ -4,15 +4,13 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\Positions;
-use AppBundle\Form\OrderForm;
 use AppBundle\Entity\Orders;
-use AppBundle\Entity\Basket;
 use AppBundle\Entity\Products;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+// Контроллер просмотра заказов
 
 class AdminController extends Controller
 {
@@ -28,11 +26,12 @@ class AdminController extends Controller
 
         return $this->render('/admin/index.html.twig', array(
             'orders' => $orders,
-//            'dump' => var_dump($orders)
+//
         ));
 
     }
 
+    //Заказ подробнее
     /**
      * @param $id
      * @return Response
@@ -43,7 +42,7 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery(
-            'SELECT p.name , b.count FROM AppBundle\Entity\Products p JOIN AppBundle\Entity\Positions b WITH p.id = b.idProduct
+            'SELECT p.name , b.count, b.idOrder FROM AppBundle\Entity\Products p JOIN AppBundle\Entity\Positions b WITH p.id = b.idProduct
              WHERE b.idOrder = :id'
         );
         $query->setParameter('id', $id);
@@ -52,5 +51,22 @@ class AdminController extends Controller
         return $this->render('admin/order.html.twig', array(
             'orders' => $order,
         ));
+    }
+
+    //Меняет статус заказа
+    /**
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/admin/send/{id}", name = "send_order")
+     */
+    public function sendAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $order = $em->getRepository('AppBundle:Orders')->find($id);
+
+        $order->setStatus(1);
+        $em->flush();
+
+        return $this->redirectToRoute('admin');
     }
 }

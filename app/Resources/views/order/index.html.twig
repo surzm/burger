@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
+
 {% block body %}
     {{ include('header/index.html.twig') }}
-    {{ dump }}
 <div>
     <p>{{ form_start(form) }}</p>
     <p>{{ form_widget(form) }}</p>
+    <p>{{ form_errors(form) }}</p>
     <p>{{ form_end(form) }}</p>
 </div>
 {% endblock %}

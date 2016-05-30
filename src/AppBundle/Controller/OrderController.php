@@ -47,7 +47,12 @@ class OrderController extends Controller
                 $em->flush();
             }
 
-            return $this->redirectToRoute('menu');
+            $request->getSession()
+                ->getFlashBag()
+                ->add('success', 'Спасибо! Ваш заказ принят и оформляется.')
+            ;
+
+            return $this->redirectToRoute('main');
         }
         return $this->render('order/index.html.twig', array(
             'form' => $form->createView(),
