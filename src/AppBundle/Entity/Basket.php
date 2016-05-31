@@ -14,15 +14,14 @@ class Basket
 {
     /**
      * @var integer
-     *
      * @ORM\Column(name="id_product", type="integer", nullable=false)
      */
     private $idProduct;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="id_session", type="integer", nullable=false)
+     * @ORM\Column(name="id_session", type="string", nullable=false)
      */
     private $idSession;
 
@@ -71,7 +70,7 @@ class Basket
     /**
      * Set idSession
      *
-     * @param integer $idSession
+     * @param string $idSession
      *
      * @return Basket
      */
@@ -85,7 +84,7 @@ class Basket
     /**
      * Get idSession
      *
-     * @return integer
+     * @return string
      */
     public function getIdSession()
     {

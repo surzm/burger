@@ -14,12 +14,13 @@ class MenuController extends Controller
      */
     public function indexAction()
     {
+
        $products = $this->getDoctrine()
            ->getRepository('AppBundle:Products')
            ->findAll();
 
         return $this->render('menu/index.html.twig', array(
-            'products'=>$products
+            'products'=>$products,
         ));
     }
 
@@ -33,7 +34,7 @@ class MenuController extends Controller
             ->find($id);
 
         return $this->render('menu/product.html.twig', array(
-            'product'=>$product
+            'product'=>$product,
         ));
     }
 }

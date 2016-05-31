@@ -16,7 +16,8 @@ class Positions
 
     /**
      * @var integer
-     *
+     * @ORM\ManyToOne(targetEntity = "Products")
+     * @ORM\JoinColumn(name="id_product", referencedColumnName="id")
      * @ORM\Column(name="id_product", type="integer", nullable=false)
      */
     private $idProduct;
