@@ -13,10 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
 class Basket
 {
     /**
-     * @var integer
-     * @ORM\Column(name="id_product", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Products")
+     * @ORM\JoinColumn(name="id_product", referencedColumnName="id")
      */
-    private $idProduct;
+    private $products;
 
     /**
      * @var string
@@ -41,31 +41,6 @@ class Basket
      */
     private $id;
 
-
-
-    /**
-     * Set idProduct
-     *
-     * @param integer $idProduct
-     *
-     * @return Basket
-     */
-    public function setIdProduct($idProduct)
-    {
-        $this->idProduct = $idProduct;
-
-        return $this;
-    }
-
-    /**
-     * Get idProduct
-     *
-     * @return integer
-     */
-    public function getIdProduct()
-    {
-        return $this->idProduct;
-    }
 
     /**
      * Set idSession
@@ -143,8 +118,32 @@ class Basket
     {
         $position = new Positions();
         $position->setCount($this->getCount());
-        $position->setIdProduct($this->getIdProduct());
+        $position->setProduct($this->getProducts());
 
         return $position;
+    }
+
+    /**
+     * Set products
+     *
+     * @param \AppBundle\Entity\Products $products
+     *
+     * @return Basket
+     */
+    public function setProducts(\AppBundle\Entity\Products $products)
+    {
+        $this->products = $products;
+
+        return $this;
+    }
+
+    /**
+     * Get products
+     *
+     * @return \AppBundle\Entity\Products
+     */
+    public function getProducts()
+    {
+        return $this->products;
     }
 }

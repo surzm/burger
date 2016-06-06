@@ -2,6 +2,7 @@
 
 {% block body %}
     {{ include('header/index.html.twig') }}
+
     <div>
         {% for product in products %}
             <a href="/menu/{{ product.id }}"> <h3>{{ product.name }}</h3></a>

@@ -41,7 +41,7 @@ class OrderController extends Controller
 
             foreach($basket as $string){
                 $position = $string->createPosition();
-                $position->setIdOrder($order->getId());
+                $position->setOrder($order);
                 $em->persist($position);
                 $em->remove($string);
                 $em->flush();

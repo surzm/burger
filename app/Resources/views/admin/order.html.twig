@@ -5,9 +5,9 @@
     <a href="/admin">К заказам</a>
     <br>
     {% for order in orders %}
-        <p>{{ order.name }} - {{ order.count }} шт. </p>
+        <p>{{ order.product.name }} - {{ order.count }} шт. </p>
 {% endfor %}
-    <a href="/admin/send/{{ orders.0.idOrder}}">Отправить</a>
+    <a href="/admin/send/{{ id }}">Отправить</a>
 
 
 {% endblock %}

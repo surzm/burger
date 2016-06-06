@@ -9,6 +9,7 @@ use AppBundle\Entity\Products;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\Common\Collections;
 
 // Контроллер просмотра заказов
 
@@ -39,17 +40,23 @@ class AdminController extends Controller
      */
     public function orderAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $order = $this->getDoctrine()
+            ->getRepository('AppBundle:Orders')
+            ->findOneById($id);
 
-        $query = $em->createQuery(
-            'SELECT p.name , b.count, b.idOrder FROM AppBundle\Entity\Products p JOIN AppBundle\Entity\Positions b WITH p.id = b.idProduct
-             WHERE b.idOrder = :id'
-        );
-        $query->setParameter('id', $id);
-        $order = $query->getResult();
+
+        $position = $order->getPosition();
+
+//        $query = $em->createQuery(
+//            'SELECT p.name , b.count, b.idOrder FROM AppBundle\Entity\Products p JOIN AppBundle\Entity\Positions b WITH p.id = b.idProduct
+//             WHERE b.idOrder = :id'
+//        );
+//        $query->setParameter('id', $id);
+//        $order = $query->getResult();
 
         return $this->render('admin/order.html.twig', array(
-            'orders' => $order,
+            'orders' => $position,
+            'id'=>$id
         ));
     }
 

@@ -3,11 +3,11 @@
 {% block body %}
     {{ include ('header/index.html.twig') }}
     <div>
-        {% for product in products %}
-            <p> {{ product.0.name }}</p>
-            <p> {{ product.0.price }}</p>
-            <p> {{ product.count }} шт.</p>
-            <p><a href="/delete{{ product.0.id }}">Удалить</a></p>
+        {% for basketRow in basketRows %}
+            <p> {{ basketRow.products.name }}</p>
+            <p> {{ basketRow.products.price }}</p>
+            <p> {{ basketRow.count }} шт.</p>
+            <p><a href="/delete{{ basketRow.products.id }}">Удалить</a></p>
 
         {% else %}
             <p>No products found</p>
@@ -15,7 +15,7 @@
     </div>
 
     <p>Общая стоимость:{{ total }}</p>
-    {% if products %}
+    {% if basketRows %}
         <p><a href="/order">Оформить заказ</a></p>
     {% endif %}
 

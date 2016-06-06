@@ -21,34 +21,33 @@ class BasketController extends Controller
         $session = $request->getSession();
         $session_id = $session->getId();
 
-        $em = $this->getDoctrine()->getManager();
+        $basketRows = $this->getDoctrine()
+            ->getRepository('AppBundle:Basket')
+            ->findByIdSession($session_id);
 
-        $query = $em->createQuery(
-            'SELECT p , b.count FROM AppBundle\Entity\Products p JOIN AppBundle\Entity\Basket b WITH p.id = b.idProduct
-             WHERE b.idSession = :id_session'
-        );
-        $query->setParameter('id_session', $session_id);
-        $products = $query->getResult();
+
         function total($products)
         {
             $total=0;
             foreach ($products as $product) {
-                $total += ($product[0]->getPrice() * $product['count']);
+                $total += ($product->getProducts()->getPrice() * $product->getCount());
             };
             return $total;
 
         };
-        $sum=total($products);
+        $sum=total($basketRows);
         $session->set('total',$sum);
 
             return $this->render('basket/index.html.twig', array(
-                'products' => $products,
+                'basketRows' => $basketRows,
                 'total' => $sum,
             ));
 
     }
 
     /**
+     * @param Request $request
+     * @param $id
      * @Route("/add{id}", name="add_basket")
      */
     public function addAction(Request $request, $id)
@@ -57,26 +56,31 @@ class BasketController extends Controller
         $session_id = $session->getId();
         $add = $this->getDoctrine()->getManager();
 
-        $product = $this->getDoctrine()
+        $findProduct = $this->getDoctrine()
             ->getRepository('AppBundle:Basket')
             ->findOneBy(array(
                 "idSession" => $session_id,
-                "idProduct" => $id
+                "products" => $id
             ));
-        if ($product == null) {
+        if ($findProduct == null) {
+            $product = $this->getDoctrine()
+                ->getRepository('AppBundle:Products')
+                ->findOneById($id);
 
             $basket = new Basket();
-            $basket->setIdProduct($id);
+            $basket->setProducts($product);
             $basket->setIdSession($session_id);
             $basket->setCount(1);
+
 
             $add->persist($basket);
             $add->flush();
         } else {
-            $product->updateCount();
+            $findProduct->updateCount();
             $add->flush();
 
         }
+
 
         $response = new RedirectResponse('/menu');
         $response->send();
@@ -95,7 +99,7 @@ class BasketController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $basket = $em->getRepository('AppBundle:Basket')->findOneBy(array(
-            'idProduct' => $id,
+            'products' => $id,
             'idSession' => $session_id
         ));
         if ($basket->getCount() == 1) {

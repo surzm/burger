@@ -16,7 +16,7 @@ class Orders
 {
 
     /**
-     * @ORM\OneToMany(targetEntity="Positions", mappedBy="idOrder")
+     * @ORM\OneToMany(targetEntity="Positions", mappedBy="order")
      */
     private $position;
 
@@ -229,5 +229,39 @@ class Orders
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Add position
+     *
+     * @param \AppBundle\Entity\Positions $position
+     *
+     * @return Orders
+     */
+    public function addPosition(\AppBundle\Entity\Positions $position)
+    {
+        $this->position[] = $position;
+
+        return $this;
+    }
+
+    /**
+     * Remove position
+     *
+     * @param \AppBundle\Entity\Positions $position
+     */
+    public function removePosition(\AppBundle\Entity\Positions $position)
+    {
+        $this->position->removeElement($position);
+    }
+
+    /**
+     * Get position
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }
