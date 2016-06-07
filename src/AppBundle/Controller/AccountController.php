@@ -22,11 +22,15 @@ class AccountController extends Controller
             ->getRepository('AppBundle:User')
             ->findOneById($id)
             ->getOrders();
+        $user = $this->getUser();
 
-        return $this->render('account/index.html.twig', array(
-            'orders' => $orders
-        ));
-
+        if($user->getId()==$id) {
+            return $this->render('account/index.html.twig', array(
+                'orders' => $orders
+            ));
+        }else{
+            return $this->render('errors/access.html.twig');
+        }
 
     }
 
