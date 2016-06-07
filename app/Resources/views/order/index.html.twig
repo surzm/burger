@@ -3,10 +3,17 @@
 
 {% block body %}
     {{ include('header/index.html.twig') }}
-<div>
-    <p>{{ form_start(form) }}</p>
-    <p>{{ form_widget(form) }}</p>
-    <p>{{ form_errors(form) }}</p>
-    <p>{{ form_end(form) }}</p>
-</div>
+
+
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {{ form_row(form.userName) }}
+        {{ form_row(form.phoneNumber) }}
+        {{ form_row(form.address) }}
+
+        {{ form_row(form.submit) }}
+        {{ form_end(form) }}
+
+
 {% endblock %}

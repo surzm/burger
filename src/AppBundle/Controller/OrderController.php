@@ -26,7 +26,10 @@ class OrderController extends Controller
         $order = new Orders();
         $form = $this->createForm(OrderForm::class, $order, array(
             'action' => $this->generateUrl('order')
+
         ));
+
+        $user = $this->getUser();
 
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -34,6 +37,7 @@ class OrderController extends Controller
             $order = $form->getData();
             $order->setDatetime(new \DateTime('now'));
             $order->setTotalCost($session->get('total'));
+            $order->setUser($user);
             $em->persist($order);
             $em->flush();
 

@@ -4,7 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Validator\Constraints\NotBlank;
-
+use AppBundle\Entity\User;
 use Sensio\Bundle\GeneratorBundle\Command\Validators;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Validator\Constraints\FormValidator;
@@ -22,6 +22,7 @@ class OrderForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
             ->add('userName', TextareaType::class, array('label' => 'Ваше имя'))
             ->add('phoneNumber', TextareaType::class, array('label' => 'Телефонный номер'))

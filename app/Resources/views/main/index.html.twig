@@ -1,6 +1,7 @@
 {%  extends 'base.html.twig' %}
 
 {% block body %}
+    {{ include('header/index.html.twig') }}
 <h1>Burgers</h1>
 
     {% if app.session.flashBag.has('success') %}

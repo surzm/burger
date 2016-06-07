@@ -11,12 +11,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Common\Collections;
 
-// Контроллер просмотра заказов
+
 
 class AdminController extends Controller
 {
     /**
-     * @Route("/admin", name = "admin")
+     * @Route("/admin/main", name = "admin")
      */
     public function indexAction()
     {
@@ -32,11 +32,11 @@ class AdminController extends Controller
 
     }
 
-    //Заказ подробнее
+
     /**
      * @param $id
      * @return Response
-     * @Route("admin/{id}", name="order_admin")
+     * @Route("/admin/{id}", name="order_admin")
      */
     public function orderAction($id)
     {
@@ -47,12 +47,6 @@ class AdminController extends Controller
 
         $position = $order->getPosition();
 
-//        $query = $em->createQuery(
-//            'SELECT p.name , b.count, b.idOrder FROM AppBundle\Entity\Products p JOIN AppBundle\Entity\Positions b WITH p.id = b.idProduct
-//             WHERE b.idOrder = :id'
-//        );
-//        $query->setParameter('id', $id);
-//        $order = $query->getResult();
 
         return $this->render('admin/order.html.twig', array(
             'orders' => $position,

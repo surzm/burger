@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <h2>
+        Добро пожаловать на администраторскую страницу, {{ app.user.username }}!
+    </h2>
+
     <h1> Заказы </h1>
 
     <table style="width: 70%">
@@ -16,13 +20,13 @@
                 {% elseif order.status == 1 %}
                     <td> Отправлен</td>
                 {% endif %}
-                <td><a href="admin/{{ order.id }}"> Подробнее </a> </td>
+                <td><a href="/admin/{{ order.id }}"> Подробнее </a> </td>
             </tr>
         {% else %}
             <p>Заказов нет</p>
         {% endfor %}
     </table>
 <br>
-    <a href="/">Выйти</a>
+    <a href="/">На главную</a>
 
 {% endblock %}

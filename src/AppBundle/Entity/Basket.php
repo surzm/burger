@@ -119,6 +119,7 @@ class Basket
         $position = new Positions();
         $position->setCount($this->getCount());
         $position->setProduct($this->getProducts());
+        $position->setCost($this->getProducts()->getPrice());
 
         return $position;
     }

@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ include('header/index.html.twig') }}
+
+    {% for order in orders %}
+        <p> Дата заказа:{{ order.datetime.date|date("m/d/y h:i:s") }}, стоимость:{{ order.totalCost }} <a href="/details/{{ order.id }}">Подробнее</a> </p>
+        {% endfor %}
+{% endblock %}

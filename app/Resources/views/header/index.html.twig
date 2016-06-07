@@ -1,4 +1,15 @@
 <p><a href="/">Главная страничка</a></p>
 <p><a href="/menu">Меню</a></p>
 <p><a href="/basket">Корзина</a> </p>
+{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+    <p><a href="/login">Войти</a> </p>
+{% endif %}
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <p> Личный кабинет <a href="\account\{{ app.user.id }}"> {{ app.user.username }} </a></p>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="/admin">Админка</a>
+        {% endif %}
+    <a href="{{ path('_security_logout') }}">
+        Выход</a>
+{% endif %}
 <br>

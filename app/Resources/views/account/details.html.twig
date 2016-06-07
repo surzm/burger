@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <a href="/account/{{ app.user.id }}">Обратно</a>
+    <br>
+    {% for order in orders %}
+        <p>{{ order.product.name }} - {{ order.count }} шт. </p>
+        <p>{{ order.cost }} * {{ order.count }}</p>
+    {% endfor %}
+
+
+
+{% endblock %}

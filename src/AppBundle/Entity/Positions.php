@@ -45,6 +45,12 @@ class Positions
      */
     private $id;
 
+    /**
+     * @var integer
+     * @ORM\Column(name="cost", type="integer")
+     */
+    private $cost;
+
 
 
     /**
@@ -127,5 +133,29 @@ class Positions
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set cost
+     *
+     * @param integer $cost
+     *
+     * @return Positions
+     */
+    public function setCost($cost)
+    {
+        $this->cost = $cost;
+
+        return $this;
+    }
+
+    /**
+     * Get cost
+     *
+     * @return integer
+     */
+    public function getCost()
+    {
+        return $this->cost;
     }
 }

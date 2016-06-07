@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Positions
  *
@@ -18,18 +19,15 @@ class Positions
      * @var integer
      * @ORM\ManyToOne(targetEntity = "Products")
      * @ORM\JoinColumn(name="id_product", referencedColumnName="id")
-     * @ORM\Column(name="id_product", type="integer", nullable=false)
      */
-    private $idProduct;
+    private $product;
 
     /**
      * @var integer
-     *  /**
-     * @ORM\ManyToOne(targetEntity="Positions", inversedBy="position")
+     * @ORM\ManyToOne(targetEntity="Orders", inversedBy="position")
      * @ORM\JoinColumn(name="id_order", referencedColumnName="id")
-     * @ORM\Column(name="id_order", type="integer", nullable=true)
      */
-    private $idOrder = 0;
+    private $order = 0;
 
     /**
      * @var integer
@@ -47,54 +45,60 @@ class Positions
      */
     private $id;
 
+    /**
+     * @var integer
+     * @ORM\Column(name="cost", type="integer")
+     */
+    private $cost;
+
 
 
     /**
-     * Set idProduct
+     * Set product
      *
-     * @param integer $idProduct
+     * @param \AppBundle\Entity\Products $product
      *
      * @return Positions
      */
-    public function setIdProduct($idProduct)
+    public function setProduct(Products $product)
     {
-        $this->idProduct = $idProduct;
+        $this->product = $product;
 
         return $this;
     }
 
     /**
-     * Get idProduct
+     * Get product
      *
      * @return integer
      */
-    public function getIdProduct()
+    public function getProduct()
     {
-        return $this->idProduct;
+        return $this->product;
     }
 
     /**
-     * Set idOrder
+     * Set Order
      *
-     * @param integer $idOrder
+     * @param \AppBundle\Entity\Orders $order
      *
      * @return Positions
      */
-    public function setIdOrder($idOrder)
+    public function setOrder(Orders $order)
     {
-        $this->idOrder = $idOrder;
+        $this->order = $order;
 
         return $this;
     }
 
     /**
-     * Get idOrder
+     * Get order
      *
      * @return integer
      */
-    public function getIdOrder()
+    public function getOrder()
     {
-        return $this->idOrder;
+        return $this->order;
     }
 
     /**

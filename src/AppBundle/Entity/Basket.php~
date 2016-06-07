@@ -18,12 +18,6 @@ class Basket
      */
     private $products;
 
-//    /**
-//     * @var integer
-//     * @ORM\Column(name="id_product", type="integer", nullable=false)
-//     */
-//    private $idProduct;
-
     /**
      * @var string
      *
@@ -46,32 +40,7 @@ class Basket
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-//
-//
-//
-//    /**
-//     * Set idProduct
-//     *
-//     * @param integer $idProduct
-//     *
-//     * @return Basket
-//     */
-//    public function setIdProduct($idProduct)
-//    {
-//        $this->idProduct = $idProduct;
-//
-//        return $this;
-//    }
 
-//    /**
-//     * Get idProduct
-//     *
-//     * @return integer
-//     */
-//    public function getIdProduct()
-//    {
-//        return $this->idProduct;
-//    }
 
     /**
      * Set idSession
@@ -149,7 +118,7 @@ class Basket
     {
         $position = new Positions();
         $position->setCount($this->getCount());
-        $position->setIdProduct($this->getIdProduct());
+        $position->setProduct($this->getProducts());
 
         return $position;
     }
